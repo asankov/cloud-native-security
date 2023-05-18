@@ -4,6 +4,7 @@ stages:
   - build
   - scan
   - publish
+  - manifest-scan
 
 build-job:
   stage: build
@@ -41,3 +42,10 @@ publish:
     - echo "Publishing image..."
     - echo "Image published SUCCESSFULLY"
 
+manifest-scan:
+  stage: manifest-scan
+  image:
+    name: asankov/opa:latest
+  script:
+    - cd 02-distribute/manifest-scanning
+    - yq -ojson deploy.yaml | opa eval --stdin-input -d policy.rego 'data.noprivileged.violations[_].msg' --fail-defined
