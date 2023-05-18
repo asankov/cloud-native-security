@@ -1,7 +1,9 @@
 stages:
-  - build
   - lint
   - test
+  - build
+  - scan
+  - publish
 
 build-job:
   stage: build
@@ -9,15 +11,33 @@ build-job:
     - echo "Building the code..."
     - echo "Build completed."
 
-lint-job:
+lint-go:
   stage: lint
   script:
     - echo "Linting the code..."
     - echo "Linting completed. No issues found."
 
-unit-test-job:
+test-integration:
+  stage: test
+  script:
+    - echo "Running integration tests..."
+    - echo "Integration tests passed SUCCESSFULLY"
+
+test-unit:
   stage: test
   script:
     - echo "Running unit tests..."
     - echo "Unit tests passed SUCCESSFULLY"
+
+scan:
+  stage: scan
+  script:
+    - echo "Scanning image..."
+    - echo "Image scanned SUCCESSFULLY"
+
+publish:
+  stage: publish
+  script:
+    - echo "Publishing image..."
+    - echo "Image published SUCCESSFULLY"
 
