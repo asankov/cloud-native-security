@@ -42,7 +42,7 @@ publish:
     - echo "Publishing image..."
     - echo "Image published SUCCESSFULLY"
 
-manifest-scan:
+manifest-scan-opa:
   stage: manifest-scan
   image:
     name: asankov/opa:latest
