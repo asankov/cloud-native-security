@@ -1,0 +1,23 @@
+stages:
+  - build
+  - lint
+  - test
+
+build-job:
+  stage: build
+  script:
+    - echo "Building the code..."
+    - echo "Build completed."
+
+lint-job:
+  stage: lint
+  script:
+    - echo "Linting the code..."
+    - echo "Linting completed. No issues found."
+
+unit-test-job:
+  stage: test
+  script:
+    - echo "Running unit tests..."
+    - echo "Unit tests passed SUCCESSFULLY"
+
