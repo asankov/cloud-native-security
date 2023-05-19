@@ -21,5 +21,7 @@ spec:
         ports:
         - containerPort: 8080
         securityContext:
-          # This is unsafe and should not be allowed.
-          privileged: true
+          # This is secure.
+          privileged: false
+          # This is also secure.
+          runAsUser: 1000
