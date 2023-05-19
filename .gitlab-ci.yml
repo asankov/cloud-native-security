@@ -49,3 +49,11 @@ manifest-scan-opa:
   script:
     - cd 02-distribute/manifest-scanning
     - yq -ojson deploy.yaml | opa eval --stdin-input -d policy.rego 'data.noprivileged.violations[_].msg' --fail-defined
+
+manifest-scan-carbon-black:
+  stage: manifest-scan
+  image:
+    name: asankov/cbctl
+  script:
+    - cd 02-distribute/manifest-scanning
+    - cbctl k8s-object validate -f deploy.yaml --org-key $CBCTL_ORG_KEY --build-step gitlab --cb-api-id $CBCTL_API_ID --cb-api-key $CBCTL_API_KEY --saas-url $CBCTL_URL
