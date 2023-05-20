@@ -48,7 +48,8 @@ manifest-scan-opa:
     name: registry.gitlab.com/asankov/cloud-native-security:opa
   script:
     - cd 02-distribute/manifest-scanning
-    - yq -ojson deploy.yaml | opa eval --stdin-input -d policy.rego 'data.noprivileged.violations[_].msg' --fail-defined
+    - opa eval -i deploy.yaml -d policy.rego 'data.noprivileged.violations[_].msg' --fail-defined
+
 
 manifest-scan-carbon-black:
   stage: manifest-scan
