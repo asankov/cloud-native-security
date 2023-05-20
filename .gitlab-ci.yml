@@ -57,4 +57,5 @@ manifest-scan-carbon-black:
     name: registry.gitlab.com/asankov/cloud-native-security:cbctl
   script:
     - cd 02-distribute/manifest-scanning
-    - cbctl k8s-object validate -f deploy.yaml --org-key $CBCTL_ORG_KEY --build-step gitlab --cb-api-id $CBCTL_API_ID --cb-api-key $CBCTL_API_KEY --saas-url $CBCTL_URL
+    - cbctl k8s-object validate -f deploy.yaml --org-key $CBCTL_ORG_KEY --build-step gitlab
+      --cb-api-id $CBCTL_API_ID --cb-api-key $CBCTL_API_KEY --saas-url $CBCTL_URL
