@@ -42,6 +42,14 @@ publish:
     - echo "Publishing image..."
     - echo "Image published SUCCESSFULLY"
 
+sign:
+  stage: publish
+  image:
+    name: registry.gitlab.com/asankov/cloud-native-security:cosign
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - cosign sign --key $COSIGN_KEY -y registry.gitlab.com/asankov/cloud-native-security:cosign
+
 manifest-scan-opa:
   stage: manifest-scan
   image:
