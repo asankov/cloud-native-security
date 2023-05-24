@@ -1,0 +1,15 @@
+apiVersion: policy.sigstore.dev/v1alpha1
+kind: ClusterImagePolicy
+metadata:
+  name: cip-key-secret
+spec:
+  images:
+    - glob: "**"
+  authorities:
+    - key:
+        hashAlgorithm: sha256
+        data: |
+          -----BEGIN PUBLIC KEY-----
+          MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEjwTyZK65jaqifzYNpv5D7Glrozx3
+          Dnh6wB0ma4qeDrM2zVt8Y20kEXUVje7gMwgltQ2Om1M2+QqkfiU6eKGfMw==
+          -----END PUBLIC KEY-----

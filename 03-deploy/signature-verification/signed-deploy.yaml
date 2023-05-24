@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signed-deploy
+  namespace: my-secure-ns
+spec:
+  selector:
+    matchLabels:
+      app: signed-deploy
+  template:
+    metadata:
+      labels:
+        app: signed-deploy
+    spec:
+      containers:
+      - name: signed-image
+        image: registry.gitlab.com/asankov/cloud-native-security:signed
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
